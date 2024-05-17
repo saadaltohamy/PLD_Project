@@ -1,0 +1,78 @@
+"Start Symbol" = <program>
+               
+!-----------Terminal--------
+Id = [_] {Letter}{AlphaNumeric}*
+Digit = ('+'|'-')?{digit}+ ('.'{digit}               +)? (('e'|('-'|'+')?{digit}+) '^' ('-'|'+')?{digit}+( '.'{digit}+)? )?      
+!---------- Rules-----------
+<program> ::= 'Start' <stmt_lst> 'End'
+        
+<stmt_lst> ::= <stmt>
+            |<stmt><stmt_lst>
+            
+<stmt> ::= <assign>
+        |<if_stmt>
+        |<switch_stmt>
+        |<for_stmt>
+        |<while_stmt>
+        |<do_while>
+        
+!------assign---------
+        
+<assign> ::= <id> '=' <Expression>';'
+          
+<id> ::= Id
+      
+<Expression>  ::= <Expression>'+'<MulExp> 
+               |  <Expression>'-'<MulExp> 
+               |  <MulExp> 
+
+<MulExp>    ::= <MulExp>'*'<factor> 
+               |<MulExp>'/'<factor>
+               |<MulExp>'%'<factor>
+               |<factor> 
+   
+<factor>      ::= <factor>'**'<Value>
+               |<Value> 
+               
+<Value>       ::= Id
+               |<digit>            
+               |'('<Expression>')'
+               
+<digit>       ::= Digit
+               
+!-------if_stmt-------------
+
+<if_stmt> ::= if <cond> '{'<stmt_lst>'}'
+           |if <cond> '{'<stmt_lst>'}' else '{'<stmt_lst>'}'
+           
+<cond> ::= <Expression><op><Expression>
+        
+<op> ::= '<'|'>'|'=='|'!='|'>='|'<='
+      
+!-------- switch--------------
+<switch_stmt> ::= switch <id> '{'<case_lst>'}'
+               
+<case_lst> ::= <case>
+            |<case><case_lst>
+
+<case> ::= case <digit> ':' <stmt_lst>
+        
+!--------while_stmt------------
+<while_stmt> ::= while <cond> '{'<stmt_lst>'}'
+              
+<do_while> ::= do <stmt_lst> while <cond>';'
+!----------for_stmt-----------
+
+<for_stmt> ::= for <data><assign>';' <cond>';' <step> '{'<stmt_lst>'}'
+            
+<data> ::= int|float|double|string
+        
+<step> ::= <id>'++'
+        |'++'<id>
+        |<id>'--'
+        |'--'<id>
+        |<assign>
+               
+
+        
+
