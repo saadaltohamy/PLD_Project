@@ -58,14 +58,14 @@
             this.listBox1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.listBox1.FormattingEnabled = true;
             this.listBox1.ItemHeight = 20;
-            this.listBox1.Location = new System.Drawing.Point(466, 41);
+            this.listBox1.Location = new System.Drawing.Point(400, 41);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(300, 204);
+            this.listBox1.Size = new System.Drawing.Size(511, 204);
             this.listBox1.TabIndex = 2;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(696, 12);
+            this.button1.Location = new System.Drawing.Point(836, 12);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 3;
@@ -78,7 +78,7 @@
             this.listBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBox2.FormattingEnabled = true;
             this.listBox2.ItemHeight = 25;
-            this.listBox2.Location = new System.Drawing.Point(400, 270);
+            this.listBox2.Location = new System.Drawing.Point(452, 251);
             this.listBox2.Name = "listBox2";
             this.listBox2.Size = new System.Drawing.Size(423, 204);
             this.listBox2.TabIndex = 4;
@@ -88,7 +88,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(865, 494);
+            this.ClientSize = new System.Drawing.Size(955, 494);
             this.Controls.Add(this.listBox2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.listBox1);

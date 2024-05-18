@@ -1,51 +1,47 @@
 "Start Symbol" = <program>
                
+
 !-----------Terminal--------
-Id = [_] {Letter}{AlphaNumeric}*
-Digit = ('+'|'-')?{digit}+ ('.'{digit}               +)? (('e'|('-'|'+')?{digit}+) '^' ('-'|'+')?{digit}+( '.'{digit}+)? )?      
+Id =[_]|{letter}[{alphanumeric}|_]*
+Digit = ('+'|'-')? {digit}+('.'{digit}+)? (('e'|('-'|'+')?{digit}+)'^'('+'|'-'){digit}+('.'{digit}+)?)?     
 !---------- Rules-----------
-<program> ::= 'Start' <stmt_lst> 'End'
-        
+<program> ::= Start <stmt_lst> End        
 <stmt_lst> ::= <stmt>
             |<stmt><stmt_lst>
             
 <stmt> ::= <assign>
         |<if_stmt>
-        |<switch_stmt>
+        |<switch_stmt>  
         |<for_stmt>
-        |<while_stmt>
         |<do_while>
         
-!------assign---------
         
-<assign> ::= <id> '=' <Expression>';'
+!------assign---------
+
+<assign> ::= <id> '=' <expr>
           
 <id> ::= Id
       
-<Expression>  ::= <Expression>'+'<MulExp> 
-               |  <Expression>'-'<MulExp> 
-               |  <MulExp> 
+<expr>  ::= <Term> 
+        | <expr> '+' <Term> 
+        | <expr> '-' <Term>
 
-<MulExp>    ::= <MulExp>'*'<factor> 
-               |<MulExp>'/'<factor>
-               |<MulExp>'%'<factor>
-               |<factor> 
-   
-<factor>      ::= <factor>'**'<Value>
-               |<Value> 
-               
-<Value>       ::= Id
-               |<digit>            
-               |'('<Expression>')'
-               
-<digit>       ::= Digit
+<Term> ::= <Factor> 
+         | <Term> '*' <Factor> 
+         | <Term> '/' <Factor>
+
+<Factor> ::= <digit> 
+           | <id> 
+           | '(' <expr> ')'
+
+<digit> ::= Digit 
                
 !-------if_stmt-------------
 
 <if_stmt> ::= if <cond> '{'<stmt_lst>'}'
-           |if <cond> '{'<stmt_lst>'}' else '{'<stmt_lst>'}'
+                      |if <cond> '{'<stmt_lst>'}' else '{'<stmt_lst>'}'
            
-<cond> ::= <Expression><op><Expression>
+<cond> ::= <expr><op><expr>
         
 <op> ::= '<'|'>'|'=='|'!='|'>='|'<='
       
@@ -58,7 +54,7 @@ Digit = ('+'|'-')?{digit}+ ('.'{digit}               +)? (('e'|('-'|'+')?{digit}
 <case> ::= case <digit> ':' <stmt_lst>
         
 !--------while_stmt------------
-<while_stmt> ::= while <cond> '{'<stmt_lst>'}'
+!<while_stmt> ::= while <cond> '{'<stmt_lst>'}'
               
 <do_while> ::= do <stmt_lst> while <cond>';'
 !----------for_stmt-----------
